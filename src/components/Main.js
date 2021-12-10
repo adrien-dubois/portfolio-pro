@@ -159,25 +159,45 @@ const Main = () => {
                     </motion.h2>
                 </Contact>
                 <BLOG to="/blog">
-                    <h2>
+                    <motion.h2
+                    
+                    whileHover={{scale: 1.1}}
+                    whileTap={{scale: 0.9}}
+                    
+                    >
                         Blog
-                    </h2>
+                    </motion.h2>
                 </BLOG>
                 <WORK to="/work" click={click}>
-                    <h2>
+                    <motion.h2
+                    
+                    whileHover={{scale: 1.1}}
+                    whileTap={{scale: 0.9}}
+                    
+                    >
                         Work
-                    </h2>
+                    </motion.h2>
                 </WORK>
                 <BottomBar>
                     <ABOUT to="/about" click={click}>
-                        <h2>
-                            À propos de moi.
-                        </h2>
+                    <motion.h2
+                    
+                    whileHover={{scale: 1.1}}
+                    whileTap={{scale: 0.9}}
+                    
+                    >
+                        À propos de moi.
+                    </motion.h2>
                     </ABOUT>
                     <SKILLS to="/skills">
-                        <h2>
-                            Mes skills.
-                        </h2>
+                    <motion.h2
+                    
+                    whileHover={{scale: 1.1}}
+                    whileTap={{scale: 0.9}}
+                    
+                    >
+                        Mes skills.
+                    </motion.h2>
                     </SKILLS>
                 </BottomBar>
 

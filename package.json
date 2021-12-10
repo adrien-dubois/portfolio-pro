@@ -1,5 +1,6 @@
 {
-  "name": "react-portfolio-starter-code-files",
+  "name": "adrien-portfolio",
+  "homepage": "https://white-umbrella.fr/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
