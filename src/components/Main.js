@@ -5,6 +5,7 @@ import LogoComponent from "../subComponents/LogoComponent";
 import PowerButton from "../subComponents/PowerButton";
 import SocialIcons from "../subComponents/SocialIcons";
 import { Umbrella } from "./AllSvgs";
+import Intro from "./Intro";
 
 
 
@@ -175,6 +176,7 @@ const Main = () => {
 
 
             </Container>
+            {click ? <Intro click={click} /> : null}
         </MainContainer>
     )
 }
