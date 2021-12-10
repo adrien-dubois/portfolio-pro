@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { Github, Instagram, Linkedin, Twitter } from '../components/AllSvgs'
+import {DarkTheme} from '../components/Themes'
 
 
 
@@ -25,34 +26,34 @@ z-index: 3;
 const Line = styled.span`
 width: 2px;
 height: 8rem;
-background-color: ${props => props.theme.text};
+background-color: ${props => props.color === 'dark' ? DarkTheme.text : DarkTheme.body };
 `
 
-const SocialIcons = () => {
+const SocialIcons = (props) => {
     return (
         <Icons>
             <div>
                 <NavLink style={{color:'inherit'}}  target="_blank" to={{pathname:"https://github.com/adrien-dubois"}}>
-                    <Github width={25} height={25} fill='currentColor' />
+                    <Github width={25} height={25} fill={props.theme === "dark" ? DarkTheme.text : DarkTheme.body } />
                 </NavLink>
             </div>
             <div>
                 <NavLink style={{color:'inherit'}}  target="_blank" to={{pathname:"https://twitter.com/AdrienDuboisDev"}}>
-                    <Twitter width={25} height={25} fill='currentColor' />
+                    <Twitter width={25} height={25} fill={props.theme === "dark" ? DarkTheme.text : DarkTheme.body } />
                 </NavLink>
             </div>
             <div>
                 <NavLink style={{color:'inherit'}}  target="_blank" to={{pathname:"https://www.linkedin.com/in/adrien-dubois-03/"}}>
-                    <Linkedin width={25} height={25} fill='currentColor' />
+                    <Linkedin width={25} height={25} fill={props.theme === "dark" ? DarkTheme.text : DarkTheme.body } />
                 </NavLink>
             </div>
             <div>
                 <NavLink style={{color:'inherit'}}  target="_blank" to={{pathname:"https://www.instagram.com/ad_dubois/"}}>
-                    <Instagram width={25} height={25} fill='currentColor' />
+                    <Instagram width={25} height={25} fill={props.theme === "dark" ? DarkTheme.text : DarkTheme.body } />
                 </NavLink>
             </div>
 
-            <Line />
+            <Line color={props.theme}/>
         </Icons>
     )
 }
