@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import LogoComponent from "../subComponents/LogoComponent";
 import PowerButton from "../subComponents/PowerButton";
 import SocialIcons from "../subComponents/SocialIcons";
+import { Umbrella } from "./AllSvgs";
 
 
 
@@ -77,13 +78,58 @@ text-decoration: none;
 z-index: 1;
 `
 
+const rotate = keyframes`
+from{
+    transform: rotate(0);
+}
+to{
+    transform: rotate(360deg);
+}
+`
+
+const Center = styled.button`
+position: absolute;
+top: ${props => props.click ? '85%' : '50%' };
+left: ${props => props.click ? '92%' : '50%' };
+transform: translate(-50%,-50%);
+border: none;
+outline: none;
+background-color: transparent;
+cursor: pointer;
+
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+transition: all 1s ease;
+
+&>:first-child{
+    animation: ${rotate} infinite 4.5s linear;
+}
+
+&>:last-child{
+    display: ${props => props.click ? 'none' : 'inline-block' };
+    padding-top: 1rem;
+}
+`
+
 const Main = () => {
+
+    const [click, setClick] = useState(false);
+
+    const handleClick = () => setClick(!click);
+
     return (
         <MainContainer>
             <Container>
                 <PowerButton />
                 <LogoComponent />
                 <SocialIcons />
+
+                <Center click={click}>
+                    <Umbrella onClick={()=> handleClick()} width={click ? 120 : 200} height={click ? 120 : 200} fill='currentColor' />
+                    <span>Cliquez ici</span>
+                </Center>
 
                 <Contact target="_blank" to={{pathname:"mailto:adrien-dubois@white-umbrella.fr"}}>
                     <h2>
