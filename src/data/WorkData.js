@@ -1,12 +1,12 @@
 export const Work = [
     {
         id:1,
-        name:"Agency Landing Page",
-        description:"It is build on top of the React JS, with styledComponents and GSAP for smooth scrolling animations.",
-        tags:["react","gsap","styledComponents"],
+        name:"Connected School Services",
+        description:"Connected School Services est une plateforme de services numériques qui permet de regrouper toutes les interactions et communications qui peuvent se faire entre un étudiant, l'établissement scolaire et ses profs. Le front a été réalisé en ReactJS, la partie back en Symfony, avec une API pour envoyer les infos au front",
+        tags:["react","symfony","api"],
         
-        demo:"https://agency-website-eta.vercel.app/",
-        github:"https://github.com/codebucks27/Agency-website"
+        demo:"http://connectedschoolservices.surge.sh/",
+        github:"https://github.com/adrien-dubois/Connected-School-Services"
     },
     {
         id:2,
