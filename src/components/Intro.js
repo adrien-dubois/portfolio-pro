@@ -1,18 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
+import {motion} from 'framer-motion'
+import Me from '../assets/Images/head-profile-image.png'
 
-import Me from '../assets/Images/profile-image-cut.png'
 
-
-const Box = styled.div`
+const Box = styled(motion.div)`
 
 position: absolute;
 left: 50%;
 top: 50%;
 transform: translate(-50%, -50%);
 
-width: 55vw;
-
+width: 65vw;
+height: 55vh;
 display: flex;
 
 background: linear-gradient(
@@ -53,23 +53,37 @@ cursor: pointer;
 
 display: flex;
 flex-direction: column;
-justify-content: center;
+justify-content: space-evenly;
+
+&>*:last-child{
+    color: ${props => `rgba(${props.theme.bodyRgba}, 0.6)` };
+    font-size: calc(0.5rem + 1.5vw);
+    font-weight: 300;
+}
 `
 
 const Intro = () => {
     return (
-        <Box>
+        <Box
+        initial={{height:0}}
+        animate={{height: '55vh'}}
+        transition={{ type: 'spring', duration:2, delay:1 }}
+        >
             <SubBox>
                 <Text>
                     <h1>Hello,</h1>
-                    <h3>Je m'appelle Adrien</h3>
-                    <h6>J'ai choisi la pilule rouge afin de développer de beaux sites web</h6>
+                    <h3>Je m'appelle Adrien.</h3>
+                    <h6>Je suis Développeur Web Backend  PHP/Symfony</h6>
                 </Text>
             </SubBox>
             <SubBox>
-                <div>
+                <motion.div
+                initial={{opacity:0}}
+                animate={{opacity:1}}
+                transition={{ duration:1, delay:2 }}
+                >
                     <img className='pic' src={Me} alt="Profile Image" />
-                </div>
+                </motion.div>
             </SubBox>
         </Box>
     )

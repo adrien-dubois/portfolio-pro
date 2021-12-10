@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
@@ -6,6 +7,7 @@ import PowerButton from "../subComponents/PowerButton";
 import SocialIcons from "../subComponents/SocialIcons";
 import { Umbrella } from "./AllSvgs";
 import Intro from "./Intro";
+
 
 
 
@@ -147,9 +149,14 @@ const Main = () => {
                 </Center>
 
                 <Contact target="_blank" to={{pathname:"mailto:adrien-dubois@white-umbrella.fr"}}>
-                    <h2>
+                    <motion.h2
+                    
+                    whileHover={{scale: 1.1}}
+                    whileTap={{scale: 0.9}}
+                    
+                    >
                         Écrivez-moi...
-                    </h2>
+                    </motion.h2>
                 </Contact>
                 <BLOG to="/blog">
                     <h2>
