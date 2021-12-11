@@ -10,6 +10,7 @@ import PowerButton from '../subComponents/PowerButton';
 import ParticleComponent from "../subComponents/ParticleComponent";
 
 import astronaut from '../assets/Images/spaceman.png';
+import BigTitle from "../subComponents/BigTitle";
 
 const Box = styled.div`
 background-color: ${props => props.theme.body};
@@ -79,6 +80,8 @@ const AboutPage = () => {
                 <br /> <br />
                 Doté d'une grande capacité d'adaptation, je sais me montrer proactif, force de proposition et digne de confiance dans la réalisation de mes missions. <br />Je suis également passionné par les langues ainsi que la lecture.
                 </Main>
+
+                <BigTitle text="ADRIEN" top="10%" left="5%" />
 
             </Box>
         </ThemeProvider>

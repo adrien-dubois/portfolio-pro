@@ -2,7 +2,7 @@ export const Work = [
     {
         id:1,
         name:"Connected School Services",
-        description:"CSS est une plateforme de services qui regroupe toutes les interactions et communications qui peuvent se faire entre un étudiant, l'établissement scolaire et ses profs. Le front a été réalisé en ReactJS, le back et l'API en Symfony.",
+        description:"CSS est une plateforme de services qui regroupe toutes les interactions et communications qui peuvent se faire entre un étudiant, l'établissement scolaire et ses profs. Front réalisé en React, Back et API en Symfony.",
         tags:["React","Symfony","Api"],
         
         demo:"http://connectedschoolservices.surge.sh/",
@@ -21,8 +21,8 @@ export const Work = [
     {
         id:3,
         name:"O'flix",
-        description:"Site web autour d'un service fournissant des informations cinématographiques sur des séries TV. Inspiré de Netflix & Allociné, le projet réuni toutes les infos autour de séries TV, et propose la gestion de comptes clients, favoris, backoffice, likes ainsi qu'une API. Projet full Symfony & BootStrap",
-        tags:["Symfony", "Bootstrap"],
+        description:"Site web inspiré de Netflix & Allociné, qui fournit des informations cinématographiques sur des séries TV. Le projet réuni les infos autour de séries TV, gestion de comptes clients, favoris, likes, backoffice ainsi qu'une API. Projet full Symfony & BootStrap",
+        tags:["Symfony", "Bootstrap", "API"],
         
         demo:"http://oflix.white-umbrella.fr/",
         github:"https://github.com/adrien-dubois/o-flix"

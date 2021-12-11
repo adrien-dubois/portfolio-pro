@@ -8,6 +8,7 @@ import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
 import PowerButton from '../subComponents/PowerButton';
 import ParticleComponent from "../subComponents/ParticleComponent";
+import BigTitle from "../subComponents/BigTitle";
 
 const Box = styled.div`
 background-color: ${props => props.theme.body};
@@ -114,7 +115,7 @@ const MySkillsPage = () => {
                     J'ai toujours aimé la partie graphique, créer des designs from Scratch jusqu'à son intégration.
                 </Description>
                 <Description>
-                    <strong>Mon workflow de webdesign</strong>
+                    <strong>Workflow</strong>
                     <ul>
                         <li>
                             Mockup site web sous Photoshop & XD.
@@ -127,10 +128,12 @@ const MySkillsPage = () => {
                 <Description>
                     <strong>Outils</strong>
                     <p>
-                        Adobe Suite (Photoshop, Illustrator, XD, Lightroom)
+                        Adobe Suite (Photoshop, Illustrator, XD, Lightroom).
                     </p>
                 </Description>
                 </Main>
+
+                <BigTitle text="SKILLS" top="80%" right="30%" />
             </Box>
         </ThemeProvider>
     )

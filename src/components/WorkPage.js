@@ -11,13 +11,15 @@ import PowerButton from '../subComponents/PowerButton';
 import { Work } from '../data/WorkData';
 import Card from "../subComponents/Card";
 import { Umbrella } from "./AllSvgs";
+import BigTitle from "../subComponents/BigTitle";
 
 const Box = styled.div`
 background-color: ${props => props.theme.body};
 
 height: 400vh;
 position: relative;
-overflow: hidden; 
+display: flex;
+align-items: center; 
 
 `
 
@@ -81,6 +83,8 @@ const WorkPage = () => {
                 <Rotate ref={umbrella}>
                     <Umbrella width={80} height={80} fill={DarkTheme.theme} />
                 </Rotate>
+
+                <BigTitle text="WORK" top="10%" right="20%" />
 
             </Box>
         </ThemeProvider>
