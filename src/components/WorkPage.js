@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { DarkTheme, lightTheme } from "./Themes";
-
+import {motion} from 'framer-motion';
 
 
 import LogoComponent from '../subComponents/LogoComponent';
@@ -23,7 +23,7 @@ align-items: center;
 
 `
 
-const Main = styled.ul`
+const Main = styled(motion.ul)`
 position: fixed;
 top: 12rem;
 left: calc(10rem + 15vw);
@@ -42,6 +42,20 @@ width: 80px;
 height: 80px;
 z-index:1;
 `
+
+// Framer-motion configuration
+
+const container = {
+    hidden: {opacity:0},
+    show: {
+        opacity:1,
+
+        transition: {
+            staggerChildren:0.5,
+            duration:0.5,
+        }
+    }
+}
 
 
 const WorkPage = () => {
@@ -72,7 +86,7 @@ const WorkPage = () => {
                 <SocialIcons theme='dark'/>
                 <PowerButton />
 
-                <Main ref={ref}>
+                <Main ref={ref}  variants={container} initial='hidden' animate='show' >
                     {
                         Work.map( d =>
                             <Card key={d.id} data={d} />
