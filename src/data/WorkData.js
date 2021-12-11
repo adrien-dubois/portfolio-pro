@@ -2,60 +2,42 @@ export const Work = [
     {
         id:1,
         name:"Connected School Services",
-        description:"Connected School Services est une plateforme de services numériques qui permet de regrouper toutes les interactions et communications qui peuvent se faire entre un étudiant, l'établissement scolaire et ses profs. Le front a été réalisé en ReactJS, la partie back en Symfony, avec une API pour envoyer les infos au front",
-        tags:["react","symfony","api"],
+        description:"CSS est une plateforme de services qui regroupe toutes les interactions et communications qui peuvent se faire entre un étudiant, l'établissement scolaire et ses profs. Le front a été réalisé en ReactJS, le back et l'API en Symfony.",
+        tags:["React","Symfony","Api"],
         
         demo:"http://connectedschoolservices.surge.sh/",
         github:"https://github.com/adrien-dubois/Connected-School-Services"
     },
     {
         id:2,
-        name:"Job listing website",
-        description:"A Job listing website build in ReactJS. With searching and filtering functionalities.",
-        tags:["react","sass"],
+        name:"Vape Swap Club",
+        description:"Un site e-commerce 100% sans framework, en PHP/HTML/CSS/JS Vanilla. Gestion panier, paiement Stripe, annonces, comptes utilisateurs, messagerie instantanée, système de Voters, Backoffice",
+        tags:["PHP","JS","Stripe","SQL"],
         
-        demo:"http://react-job-listing-website.codebucks27.vercel.app/",
-        github:"https://github.com/codebucks27/react-job-listing-website"
+        demo:"http://vape-swap-club.white-umbrella.fr/",
+        github:"https://github.com/adrien-dubois/vape-swap-club"
         
     },
     {
         id:3,
-        name:"Dev.to Clone",
-        description:"A clone of Dev.to build using ReactJS. With realtime fetching of articles from dev.to using API.",
-        tags:["react","api","sass"],
+        name:"O'flix",
+        description:"Site web autour d'un service fournissant des informations cinématographiques sur des séries TV. Inspiré de Netflix & Allociné, le projet réuni toutes les infos autour de séries TV, et propose la gestion de comptes clients, favoris, backoffice, likes ainsi qu'une API. Projet full Symfony & BootStrap",
+        tags:["Symfony", "Bootstrap"],
         
-        demo:"http://devto-clone-codebucks27.vercel.app/",
-        github:"https://github.com/codebucks27/devto-clone"
+        demo:"http://oflix.white-umbrella.fr/",
+        github:"https://github.com/adrien-dubois/o-flix"
     },
     {
         id:4,
-        name:"Sidebar Menu",
-        description:"A cool looking sidebar menu build using ReactJS and styledComponents.It has really smooth animations.",
-        tags:["react","styledComponents","react-router"],
+        name:"Umbrella Framework",
+        description:"Un petit framework PHP fait maison, utilisant Composer, avec un service de routing, modèle MVC, protection CSRF, liste ACL",
+        tags:["PHP", "Composer", "Framework", "Router"],
         
-        demo:"https://react-sidebar.vercel.app/",
-        github:"https://github.com/codebucks27/react-sidebar"
+        demo:"https://github.com/adrien-dubois/BaseMvc",
+        github:"https://github.com/adrien-dubois/BaseMvc"
        
-    },{
-        id:5,
-        name:"Todo App(React + Redux)",
-        description:"A todo app build using Redux-toolkit and framer-motion for smooth animations.",
-        tags:["react","redux","framer-motion"],
-        
-        demo:"http://react-redux-todo-app-git-main-codebucks27.vercel.app/",
-        github:"https://github.com/codebucks27/React-Redux-Todo-App"
-        
     },
-    {
-        id:6,
-        name:"Responsive Navigation Menu",
-        description:"A reponsive navbar menu component in ReactJS with react-router functionalities. Built from scratch.",
-        tags:["react","react-router","css"],
-        
-        demo:"http://react-responsive-navbar-codebucks27.vercel.app/",
-        github:"https://github.com/codebucks27/React-responsive-navbar"
-        
-    },
+
     
   
 ] 
