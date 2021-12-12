@@ -74,7 +74,7 @@ const AboutPage = () => {
                     <img src={astronaut} alt="Spaceman" />
                 </Spaceman>
                 <Main>
-                Développeur Web Backend, je bénéficie d'une expérience pratique dans la réalisation de sites web, en particulier e-commerces PHP et PHP Symfony, gestion et création de base de données acquise au cours de mon expérience.
+                Développeur Web Backend, je bénéficie d'une expérience pratique dans la réalisation de sites web, en particulier e-commerces et PHP Symfony, gestion et création de base de données, acquise au cours de mon expérience.
                 <br /> <br />
                 Étant curieux de nature, aimant apprendre et acquérir de nouvelles connaissances, c'est donc naturellement que je me dirige aussi vers le Frontend afin de bénéficier d'une polyvalence dans mes compétences. 
                 <br /> <br />

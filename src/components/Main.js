@@ -199,7 +199,7 @@ const Main = () => {
                     whileTap={{scale: 0.9}}
                     
                     >
-                        Work
+                        Mes Projets
                     </motion.h2>
                 </WORK>
                 <BottomBar>

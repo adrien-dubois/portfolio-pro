@@ -37,6 +37,16 @@ export const Work = [
         github:"https://github.com/adrien-dubois/BaseMvc"
        
     },
+    {
+        id:5,
+        name:"Webdesign HP RP",
+        description:"Simplement un webdesign brut fait sous Photoshop pour un Role Play sur Harry Potter. Webdesign en onepage, qui permets de retoucher simplement ce dont on a besoin avin d'en faire l'intégration",
+        tags:["Webdesign", "Mockup", "Photoshop"],
+        
+        demo:"https://adrien-dubois.github.io/webdesign-hp/",
+        github:"https://github.com/adrien-dubois/webdesign-hp"
+       
+    },
 
     
   
