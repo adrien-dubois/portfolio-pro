@@ -21,7 +21,7 @@ display: flex;
         }
     }
     h3{
-        color: var(--white-color);
+        color: #FFF;
         font-size: 2rem;
     }
 `;

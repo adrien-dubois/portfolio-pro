@@ -47,6 +47,16 @@ export const Work = [
         github:"https://github.com/adrien-dubois/webdesign-hp"
        
     },
+    {
+        id:6,
+        name:"Portfolio",
+        description:"Et bien ce même Portfolio effectué en ReactJS afin de fournir des informations à mon sujet",
+        tags:["ReactJS", "Styled-component", "Framer-Motion"],
+        
+        demo:"https://white-umbrella.fr/",
+        github:"https://github.com/adrien-dubois/portfolio-pro"
+       
+    },
 
     
   

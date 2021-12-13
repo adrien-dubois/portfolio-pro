@@ -1,23 +1,22 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { DarkTheme, lightTheme } from "./Themes";
-import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
-import SchoolIcon from '@mui/icons-material/School';
+
 
 
 import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
 import PowerButton from '../subComponents/PowerButton';
 
-import BigTitle from "../subComponents/BigTitle";
-import Title from "../subComponents/Title";
-import SmallTitle from "../subComponents/SmallTitle";
 import Skills from "./Skills";
+import Resume from "./Resume";
+import { MainLayout } from "../subComponents/Layout";
+import ParticleComponent from "../subComponents/ParticleComponent";
 
 const Box = styled.div`
 background-color: ${props => props.theme.body};
 width: 100vw;
-height: 100vh;
+height: 100%;
 position: relative;
 display: flex;
    
@@ -35,24 +34,20 @@ padding: 5rem 0;
 `
 
 const BlogPage = () => {
-    const briefcase = <BusinessCenterIcon />
-    const school = <SchoolIcon />
     return (
         <ThemeProvider theme={DarkTheme}>
             <Box>
                 <LogoComponent theme='dark'/>
                 <SocialIcons theme='dark'/>
                 <PowerButton />
+                <ParticleComponent theme='dark'/>
                 <Container>
-                    <Skills />
-
+                    <MainLayout>
+                        <Skills />
+                        <Resume />
+                    </MainLayout>
                 </Container>
-                {/* <Title title={'Parcours'} span={'parcours'} />
-                <InnerLayout>
-                    <SmallTitle icon={briefcase} title={'Expérience'} />
-                </InnerLayout> */}
 
-                
             </Box>
         </ThemeProvider>
     )

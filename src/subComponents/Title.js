@@ -18,6 +18,7 @@ const TitleStyled = styled.div`
         text-transform: uppercase;
         position: relative;
         padding-bottom: .7rem;
+        z-index: 5;
         @media screen and (max-width: 496px){
             font-size: 2.8rem;
         }
@@ -45,12 +46,12 @@ const TitleStyled = styled.div`
             left: 0;
         }
         span{
-            font-weight: 900;
+            font-weight: 700;
             color: rgba(25,29,43,.44);
             font-size: 5rem;
             position: absolute;
-            left: 10%;
-            top: 30%;
+            left: 8%;
+            top: 35%;
             z-index: 0;
             @media screen and (max-width: 620px){
                 font-size: 4rem;

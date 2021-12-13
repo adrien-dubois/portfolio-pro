@@ -181,7 +181,7 @@ const Main = () => {
                     whileTap={{scale: 0.9}}
                     
                     >
-                        Blog
+                        C.V.
                     </motion.h2>
                 </BLOG>
                 <WORK to="/work" click={click}>

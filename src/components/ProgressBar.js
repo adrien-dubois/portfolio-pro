@@ -45,6 +45,7 @@ font-weight: 300;
 const Text = styled.p`
 color: #555;
 font-size: 1.1rem;
+margin-right: 0.5rem;
 `
 
 export default ProgressBar
