@@ -1,8 +1,8 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styled, { keyframes, ThemeProvider } from "styled-components";
 import { DarkTheme } from "./Themes";
-
-
+import RingLoader from "react-spinners/RingLoader";
+import { css } from "@emotion/react";
 
 import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
@@ -61,29 +61,58 @@ font-family: 'Ubuntu Mono',monospace;
 font-style: italic;
 `
 
+const override = css`
+position: absolute;
+bottom: 10%;
+right: 10%;
+`
+
 const AboutPage = () => {
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000)
+    }, [])
+
     return (
         <ThemeProvider theme={DarkTheme}>
-            <Box>
-                <LogoComponent theme='dark'/>
-                <SocialIcons theme='dark'/>
-                <PowerButton />
-                <ParticleComponent theme='dark'/>
-                
-                <Spaceman>
-                    <img src={astronaut} alt="Spaceman" />
-                </Spaceman>
-                <Main>
-                Développeur Web Backend, je bénéficie d'une expérience pratique dans la réalisation de sites web, en particulier e-commerces et PHP Symfony, gestion et création de base de données, acquise au cours de mon expérience.
-                <br /> <br />
-                Étant curieux de nature, aimant apprendre et acquérir de nouvelles connaissances, c'est donc naturellement que je me dirige aussi vers le Frontend afin de bénéficier d'une polyvalence dans mes compétences. 
-                <br /> <br />
-                Doté d'une grande capacité d'adaptation, je sais me montrer proactif, force de proposition et digne de confiance dans la réalisation de mes missions. <br />Je suis également passionné par les langues ainsi que la lecture.
-                </Main>
 
-                <BigTitle text="ADRIEN" top="10%" left="5%" />
+            {
+                loading ?
+                <RingLoader 
+                color={'#000'} 
+                loading={loading}  
+                size={60}
+                css={override}
+                />
 
-            </Box>
+                :
+
+                <Box>
+                    <LogoComponent theme='dark'/>
+                    <SocialIcons theme='dark'/>
+                    <PowerButton />
+                    <ParticleComponent theme='dark'/>
+                    
+                    <Spaceman>
+                        <img src={astronaut} alt="Spaceman" />
+                    </Spaceman>
+                    <Main>
+                    Développeur Web Backend, je bénéficie d'une expérience pratique dans la réalisation de sites web, en particulier e-commerces et PHP Symfony, gestion et création de base de données, acquise au cours de mon expérience.
+                    <br /> <br />
+                    Étant curieux de nature, aimant apprendre et acquérir de nouvelles connaissances, c'est donc naturellement que je me dirige aussi vers le Frontend afin de bénéficier d'une polyvalence dans mes compétences. 
+                    <br /> <br />
+                    Doté d'une grande capacité d'adaptation, je sais me montrer proactif, force de proposition et digne de confiance dans la réalisation de mes missions. <br />Je suis également passionné par les langues ainsi que la lecture.
+                    </Main>
+
+                    <BigTitle text="ADRIEN" top="10%" left="5%" />
+
+                </Box>
+            }
+        
         </ThemeProvider>
     )
 }

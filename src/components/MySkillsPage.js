@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { lightTheme } from "./Themes";
 import {Design, Develope} from './AllSvgs';
+import RingLoader from "react-spinners/RingLoader";
+import { css } from "@emotion/react";
 
 
 import LogoComponent from '../subComponents/LogoComponent';
@@ -79,62 +81,92 @@ ul, p{
 
 `
 
+const override = css`
+position: absolute;
+bottom: 10%;
+right: 10%;
+`
+
+
 const MySkillsPage = () => {
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000)
+    }, [])
+
     return (
         <ThemeProvider theme={lightTheme}>
-            <Box>
-                <LogoComponent theme='light'/>
-                <SocialIcons theme='light'/>
-                <PowerButton />
-                <ParticleComponent theme='light'/>
-                <Main>
+
+            {
+                loading ?
+                <RingLoader 
+                color={'#000'} 
+                loading={loading}  
+                size={60}
+                css={override}
+                />
+
+                :
+
+                <Box>
+                    <LogoComponent theme='light'/>
+                    <SocialIcons theme='light'/>
+                    <PowerButton />
+                    <ParticleComponent theme='light'/>
+                    <Main>
+                        <Title>
+                            <Develope width={40} height={40} /> Développeur Backend
+                        </Title>
+                        <Description>
+                            Développeur Web, je me suis spécialisé dans le language PHP, ainsi que sur le framework Symfony.
+                        </Description>
+                        <Description>
+                            <strong>Skills</strong>
+                            <p>
+                                HTML, CSS, PHP, JS, SQL, Symfony, Laravel/Lumen, React, Bootstrap etc...
+                            </p>
+                        </Description>
+                        <Description>
+                            <strong>Outils</strong>
+                            <p>
+                                VSCode, GitHub, Adminer, Insomnia.
+                            </p>
+                        </Description>
+                    </Main>
+                    <Main>
                     <Title>
-                        <Develope width={40} height={40} /> Développeur Backend
+                        <Design width={40} height={40} /> Web-Design
                     </Title>
                     <Description>
-                        Développeur Web, je me suis spécialisé dans le language PHP, ainsi que sur le framework Symfony.
+                        J'ai toujours aimé la partie graphique, créer des designs from Scratch jusqu'à son intégration.
                     </Description>
                     <Description>
-                        <strong>Skills</strong>
-                        <p>
-                            HTML, CSS, PHP, JS, SQL, Symfony, Laravel/Lumen, React, Bootstrap etc...
-                        </p>
+                        <strong>Workflow</strong>
+                        <ul>
+                            <li>
+                                Mockup site web sous Photoshop & XD.
+                            </li>
+                            <li>
+                                Intégration en HTML/CSS.
+                            </li>
+                        </ul>
                     </Description>
                     <Description>
                         <strong>Outils</strong>
                         <p>
-                            VSCode, GitHub, Adminer, Insomnia.
+                            Adobe Suite (Photoshop, Illustrator, XD, Lightroom).
                         </p>
                     </Description>
-                </Main>
-                <Main>
-                <Title>
-                    <Design width={40} height={40} /> Web-Design
-                </Title>
-                <Description>
-                    J'ai toujours aimé la partie graphique, créer des designs from Scratch jusqu'à son intégration.
-                </Description>
-                <Description>
-                    <strong>Workflow</strong>
-                    <ul>
-                        <li>
-                            Mockup site web sous Photoshop & XD.
-                        </li>
-                        <li>
-                            Intégration en HTML/CSS.
-                        </li>
-                    </ul>
-                </Description>
-                <Description>
-                    <strong>Outils</strong>
-                    <p>
-                        Adobe Suite (Photoshop, Illustrator, XD, Lightroom).
-                    </p>
-                </Description>
-                </Main>
+                    </Main>
 
-                <BigTitle text="SKILLS" top="80%" right="30%" />
-            </Box>
+                    <BigTitle text="SKILLS" top="80%" right="30%" />
+                </Box>
+            }
+
         </ThemeProvider>
     )
 }

@@ -166,7 +166,7 @@ const Main = () => {
                         Écrivez-moi...
                     </motion.h2>
                 </Contact>
-                <BLOG to="/blog">
+                <BLOG to="/cv">
                     <motion.h2
                     initial={{
                         y:-200,

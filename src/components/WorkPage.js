@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { DarkTheme, lightTheme } from "./Themes";
+import RingLoader from "react-spinners/RingLoader";
+import { css } from "@emotion/react";
+
+import { DarkTheme } from "./Themes";
 import {motion} from 'framer-motion';
-
-
 import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
 import PowerButton from '../subComponents/PowerButton';
-
 import { Work } from '../data/WorkData';
 import Card from "../subComponents/Card";
 import { Umbrella } from "./AllSvgs";
@@ -43,6 +43,12 @@ height: 80px;
 z-index:1;
 `
 
+const override = css`
+position: absolute;
+bottom: 10%;
+right: 10%;
+`
+
 // Framer-motion configuration
 
 const container = {
@@ -60,47 +66,73 @@ const container = {
 
 const WorkPage = () => {
 
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000)
+    }, [])
+
     const ref = useRef(null);
     const umbrella = useRef(null);
 
     useEffect(() => {
 
-        let element = ref.current;
+        if(ref.current !== null){
 
-        const rotate = () => {
-            element.style.transform = `translateX(${-window.pageYOffset}px)`
-
-            umbrella.current.style.transform = `rotate(` + -window.pageYOffset + 'deg)'
+            let element = ref.current;
+            
+            const rotate = () => {
+                element.style.transform = `translateX(${-window.scrollY}px)`
+    
+                umbrella.current.style.transform = `rotate(` + -window.scrollY + 'deg)'
+            }
+    
+            window.addEventListener('scroll', rotate)
+    
+            return () => window.removeEventListener('scroll', rotate)
         }
+    }, [loading])
 
-        window.addEventListener('scroll', rotate)
-
-        return () => window.removeEventListener('scroll', rotate)
-
-    }, [])
 
     return (
         <ThemeProvider theme={DarkTheme}>
-            <Box>
-                <LogoComponent theme='dark'/>
-                <SocialIcons theme='dark'/>
-                <PowerButton />
 
-                <Main ref={ref}  variants={container} initial='hidden' animate='show' >
-                    {
-                        Work.map( d =>
-                            <Card key={d.id} data={d} />
-                        )
-                    }
-                </Main>
+            {
+                loading ?
+                <RingLoader
+                color={'#000'}
+                loading={loading}
+                size={60}
+                css={override} />
+                        
+                :
 
-                <Rotate ref={umbrella}>
-                    <Umbrella width={80} height={80} fill={DarkTheme.theme} />
-                </Rotate>
+                <Box>
+                    <LogoComponent theme='dark'/>
+                    <SocialIcons theme='dark'/>
+                    <PowerButton />
+                    <Main ref={ref}  variants={container} initial='hidden' animate='show' >
+                        {
+                            Work.map( d =>
+                                <Card key={d.id} data={d} />
+                            )
+                        }
+                    </Main>
 
-                <BigTitle text="PROJETS" top="10%" right="20%" />
 
-            </Box>
+                    <Rotate ref={umbrella}>
+                        <Umbrella width={80} height={80} fill={DarkTheme.theme} />
+                    </Rotate>
+
+                    <BigTitle text="PROJETS" top="10%" right="20%" />
+
+                </Box>
+            }
+
+            
         </ThemeProvider>
     )
 }
