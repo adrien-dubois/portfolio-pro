@@ -1,18 +1,18 @@
-import React, {useState, useEffect} from "react";
+import { motion } from 'framer-motion'
+import { lazy, Suspense} from "react";
 import styled, { keyframes, ThemeProvider } from "styled-components";
-import { DarkTheme } from "./Themes";
-import RingLoader from "react-spinners/RingLoader";
-import { css } from "@emotion/react";
 
-import LogoComponent from '../subComponents/LogoComponent';
-import SocialIcons from '../subComponents/SocialIcons';
-import PowerButton from '../subComponents/PowerButton';
-import ParticleComponent from "../subComponents/ParticleComponent";
-
+import { DarkTheme, mediaQueries } from "./Themes";
 import astronaut from '../assets/Images/spaceman.png';
-import BigTitle from "../subComponents/BigTitle";
+import Loading from "../subComponents/Loading"
 
-const Box = styled.div`
+const LogoComponent = lazy(() => import ('../subComponents/LogoComponent'));
+const SocialIcons = lazy(() => import ('../subComponents/SocialIcons'));
+const PowerButton = lazy(() => import ('../subComponents/PowerButton'));
+const ParticleComponent = lazy(() => import ("../subComponents/ParticleComponent"));
+const BigTitle = lazy(() => import ("../subComponents/BigTitle"));
+
+const Box = styled(motion.div)`
 background-color: ${props => props.theme.body};
 width: 100vw;
 height: 100vh;
@@ -26,7 +26,7 @@ const float = keyframes`
 100% { transform: translateY(-10px) }
 `
 
-const Spaceman = styled.div`
+const Spaceman = styled(motion.div)`
 position: absolute;
 top: 10%;
 right: 5%;
@@ -59,48 +59,58 @@ top: 10rem;
 
 font-family: 'Ubuntu Mono',monospace;
 font-style: italic;
+
+${mediaQueries(40)`
+          width: 60vw;
+          height: 50vh;
+          top:50%;
+          left:50%;
+          transform:translate(-50%,-50%);
+
+
+  `};
+  ${mediaQueries(30)`
+          width: 50vw;
+          height: auto;
+          backdrop-filter: none;
+          margin-top:2rem;
+
+  `};
+
+${mediaQueries(20)`
+          padding: 1rem;
+          font-size: calc(0.5rem + 1vw);
+  `};
 `
 
-const override = css`
-position: absolute;
-bottom: 10%;
-right: 10%;
-`
 
 const AboutPage = () => {
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        setLoading(true)
-        setTimeout(() => {
-            setLoading(false)
-        }, 2000)
-    }, [])
 
     return (
         <ThemeProvider theme={DarkTheme}>
-
-            {
-                loading ?
-                <RingLoader 
-                color={'#000'} 
-                loading={loading}  
-                size={60}
-                css={override}
-                />
-
-                :
-
-                <Box>
+            <Suspense fallback={<Loading />} >
+                <Box
+                key='skills'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 0.5 } }}
+                exit={{ opacity: 0, transition: { duration: 0.5 } }}>
                     <LogoComponent theme='dark'/>
                     <SocialIcons theme='dark'/>
                     <PowerButton />
                     <ParticleComponent theme='dark'/>
                     
-                    <Spaceman>
+                    <Spaceman
+                        initial={{ right: '-20%', top: '100%' }}
+                        animate={{
+                        right: '5%',
+                        top: '10%',
+                        transition: { duration: 2, delay: 0.5 },
+                    }}>
                         <img src={astronaut} alt="Spaceman" />
                     </Spaceman>
-                    <Main>
+                    <Main
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1, transition: { duration: 1, delay: 1 } }}>
                     Développeur Web Backend, je bénéficie d'une expérience pratique dans la réalisation de sites web, en particulier e-commerces et PHP Symfony, gestion et création de base de données, acquise au cours de mon expérience.
                     <br /> <br />
                     Étant curieux de nature, aimant apprendre et acquérir de nouvelles connaissances, c'est donc naturellement que je me dirige aussi vers le Frontend afin de bénéficier d'une polyvalence dans mes compétences. 
@@ -111,8 +121,7 @@ const AboutPage = () => {
                     <BigTitle text="ADRIEN" top="10%" left="5%" />
 
                 </Box>
-            }
-        
+            </Suspense>
         </ThemeProvider>
     )
 }

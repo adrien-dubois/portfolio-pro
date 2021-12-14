@@ -1,15 +1,18 @@
 import { Route, Switch, useLocation } from "react-router-dom"
-import { ThemeProvider } from "styled-components"
-import { DarkTheme, lightTheme } from "./components/Themes"
+import { AnimatePresence } from "framer-motion";
+import { lazy, Suspense } from "react";
 import GlobalStyle from "./globalStyles"
+import { ThemeProvider } from "styled-components"
+import { lightTheme } from "./components/Themes"
+import Loading from "./subComponents/Loading"
 
 // Components
-import Main from './components/Main';
-import AboutPage from './components/AboutPage';
-import BlogPage from './components/BlogPage';
-import WorkPage from './components/WorkPage';
-import MySkillsPage from './components/MySkillsPage';
-import { AnimatePresence } from "framer-motion";
+const Main = lazy(() => import ('./components/Main'));
+const AboutPage = lazy(() => import ('./components/AboutPage'));
+const BlogPage = lazy(() => import ('./components/BlogPage'));
+const WorkPage = lazy(() => import ('./components/WorkPage'));
+const MySkillsPage = lazy(() => import ('./components/MySkillsPage'));
+
 
 function App() {
 
@@ -19,6 +22,7 @@ function App() {
     <GlobalStyle />
 
       <ThemeProvider theme={lightTheme}>
+        <Suspense fallback={<Loading />}>
       
       {/* For framer-motion animation on page change! */}
       <AnimatePresence exitBeforeEnter>
@@ -30,7 +34,7 @@ function App() {
           <Route exact path="/skills" component={MySkillsPage}/>
         </Switch>
       </AnimatePresence>
-
+        </Suspense>
       </ThemeProvider>
     </>
     

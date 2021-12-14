@@ -1,15 +1,17 @@
-import { motion } from "framer-motion";
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
-import LogoComponent from "../subComponents/LogoComponent";
-import PowerButton from "../subComponents/PowerButton";
-import SocialIcons from "../subComponents/SocialIcons";
+import { NavLink } from "react-router-dom";
+import { lazy, Suspense, useState } from "react";
+import { motion } from "framer-motion";
+
 import { Umbrella } from "./AllSvgs";
 import Intro from "./Intro";
+import { mediaQueries } from "./Themes";
 
+import Loading from "../subComponents/Loading"
 
-
+const LogoComponent = lazy(() => import ("../subComponents/LogoComponent"));
+const PowerButton = lazy(() => import ("../subComponents/PowerButton"));
+const SocialIcons = lazy(() => import ("../subComponents/SocialIcons"));
 
 const MainContainer = styled.div`
 background: ${props => props.theme.body};
@@ -23,6 +25,17 @@ h2,h3,h4,h5,h6{
     font-family: 'Karla', sans-serif;
     font-weight: 500;
 }
+h2 {
+    ${mediaQueries(40)`
+      font-size:1.2em;
+
+  `};
+
+    ${mediaQueries(30)`
+      font-size:1em;
+
+  `};
+  }
 `
 
 const Container = styled.div`
@@ -30,7 +43,7 @@ padding: 2rem;
 `
 
 const Contact = styled(NavLink)`
-color: ${props => props.theme.text};
+color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
 position: absolute;
 top: 2rem;
 right: calc(1rem + 2vw);
@@ -39,13 +52,16 @@ z-index: 1;
 `
 
 const BLOG = styled(NavLink)`
-color: ${props => props.theme.text};
+color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
 position: absolute;
 top: 50%;
 right: calc(1rem + 2vw);
 transform: rotate(90deg) translate(-50%, -50%);
 text-decoration: none;
 z-index: 1;
+@media only screen and (max-width: 50em) {
+    text-shadow: ${(props) => (props.click ? "0 0 4px #000" : "none")};
+}
 `
 
 const WORK = styled(NavLink)`
@@ -56,6 +72,9 @@ left: 2rem;
 transform: translate(-50%, -50%) rotate(-90deg);
 text-decoration: none;
 z-index: 1;
+@media only screen and (max-width: 50em) {
+    text-shadow: ${(props) => (props.click ? "0 0 4px #000" : "none")};
+  }
 `
 
 const BottomBar = styled.div`
@@ -106,7 +125,7 @@ justify-content: center;
 align-items: center;
 transition: all 1s ease;
 
-&>:first-child{
+&>*:first-child{
     animation: ${rotate} infinite 4.5s linear;
 }
 
@@ -114,6 +133,16 @@ transition: all 1s ease;
     display: ${props => props.click ? 'none' : 'inline-block' };
     padding-top: 1rem;
 }
+@media only screen and (max-width: 50em) {
+    top: ${(props) => (props.click ? "90%" : "50%")};
+    left: ${(props) => (props.click ? "90%" : "50%")};
+    width: ${(props) => (props.click ? "80px" : "150px")};
+    height: ${(props) => (props.click ? "80px" : "150px")};
+  }
+  @media only screen and (max-width: 30em) {
+    width: ${(props) => (props.click ? "40px" : "150px")};
+    height: ${(props) => (props.click ? "40px" : "150px")};
+  }
 `
 
 const DarkDiv = styled.div`
@@ -126,64 +155,160 @@ width: ${props => props.click ? '50%' : '0%'};
 height: ${props => props.click ? '100%' : '0%'};
 z-index: 1; 
 transition: height 0.5s ease, width 1s ease 0.5s;
+
+${(props) =>
+    props.click
+      ? mediaQueries(50)`
+       height: 50%;
+  right:0;
+  
+  width: 100%;
+  transition: width 0.5s ease, height 1s ease 0.5s;
+
+  `
+      : mediaQueries(50)`
+       height: 0;
+  
+  width: 0;
+  `};
 `
 
 
 const Main = () => {
 
     const [click, setClick] = useState(false);
+    const [path, setpath] = useState("");
 
     const handleClick = () => setClick(!click);
 
+    const moveY = {
+        y: "-100%",
+      };
+      const moveX = {
+        x: `${path === "work" ? "100%" : "-100%"}`,
+      };
+      const mq = window.matchMedia("(max-width: 50em)").matches;
+
+    let [loading] = useState(true);
+
     return (
-        <MainContainer>
+        <Suspense fallback={<Loading />}>
+        <MainContainer
+            key="modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={path === "about" || path === "skills" ? moveY : moveX}
+            transition={{ duration: 0.5 }}
+        >
             <DarkDiv click={click} />
             <Container>
                 <PowerButton />
                 <LogoComponent theme={click ? 'dark' : 'light'}/>
-                <SocialIcons theme={click ? 'dark' : 'light'} />
+                {mq ? (
+                    <SocialIcons theme="light" />
+                ) : (
+                    <SocialIcons theme={click ? "dark" : "light"} />
+                )}
                 
                 <Center click={click}>
-                    <Umbrella onClick={()=> handleClick()} width={click ? 120 : 200} height={click ? 120 : 200} fill='currentColor' />
+                {mq ? (
+                <Umbrella
+                    onClick={() => handleClick()}
+                    width={click ? 80 : 150}
+                    height={click ? 80 : 150}
+                    fill="currentColor"
+                />
+                ) : (
+                <Umbrella
+                    onClick={() => handleClick()}
+                    width={click ? 120 : 200}
+                    height={click ? 120 : 200}
+                    fill="currentColor"
+                />
+                )}
                     <span>Cliquez ici</span>
                 </Center>
 
-                <Contact target="_blank" to={{pathname:"mailto:adrien-dubois@white-umbrella.fr"}}>
-                    <motion.h2
-                    initial={{
-                        y:-200,
-                        transition: {type:'spring', duration: 1.5, delay:1}
-                    }}
-                    animate={{
-                        y:0,
-                        transition: {type:'spring', duration: 1.5, delay:1}
-                    }}
-
-                    whileHover={{scale: 1.1}}
-                    whileTap={{scale: 0.9}}
-                    
+                {mq ? (
+                    <Contact
+                    click={+click}
+                    target="_blank"
+                    to={{ pathname: "mailto:adrien-dubois@white-umbrella.fr" }}
+                    >
+                    <motion.h3
+                        initial={{
+                        y: -200,
+                        transition: { type: "spring", duration: 1.5, delay: 1 },
+                        }}
+                        animate={{
+                        y: 0,
+                        transition: { type: "spring", duration: 1.5, delay: 1 },
+                        }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
                     >
                         Écrivez-moi...
-                    </motion.h2>
-                </Contact>
-                <BLOG to="/cv">
+                    </motion.h3>
+                    </Contact>
+                ) : (
+                    <Contact
+                    click={+false}
+                    target="_blank"
+                    to={{ pathname: "mailto:adrien-dubois@white-umbrella.fr" }}
+                    >
+                    <motion.h3
+                        initial={{
+                        y: -200,
+                        transition: { type: "spring", duration: 1.5, delay: 1 },
+                        }}
+                        animate={{
+                        y: 0,
+                        transition: { type: "spring", duration: 1.5, delay: 1 },
+                        }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                    >
+                        Écrivez-moi...
+                    </motion.h3>
+                    </Contact>
+                )}
+
+                {mq ? (
+                    <BLOG click={+click} onClick={() => setpath("cv")} to="/cv">
                     <motion.h2
-                    initial={{
-                        y:-200,
-                        transition: {type:'spring', duration: 1.5, delay:1}
-                    }}
-                    animate={{
-                        y:0,
-                        transition: {type:'spring', duration: 1.5, delay:1}
-                    }}
-                    
-                    whileHover={{scale: 1.1}}
-                    whileTap={{scale: 0.9}}
-                    
+                        initial={{
+                        y: -200,
+                        transition: { type: "spring", duration: 1.5, delay: 1 },
+                        }}
+                        animate={{
+                        y: 0,
+                        transition: { type: "spring", duration: 1.5, delay: 1 },
+                        }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
                     >
                         C.V.
                     </motion.h2>
-                </BLOG>
+                    </BLOG>
+                ) : (
+                    <BLOG click={+false} onClick={() => setpath("cv")} to="/cv">
+                    <motion.h2
+                        initial={{
+                        y: -200,
+                        transition: { type: "spring", duration: 1.5, delay: 1 },
+                        }}
+                        animate={{
+                        y: 0,
+                        transition: { type: "spring", duration: 1.5, delay: 1 },
+                        }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                    >
+                        C.V.
+                    </motion.h2>
+                    </BLOG>
+                )}
+
                 <WORK to="/work" click={click}>
                     <motion.h2
                     initial={{
@@ -202,6 +327,7 @@ const Main = () => {
                         Mes Projets
                     </motion.h2>
                 </WORK>
+                
                 <BottomBar>
                     <ABOUT to="/about" click={click}>
                     <motion.h2
@@ -245,6 +371,7 @@ const Main = () => {
             </Container>
             {click ? <Intro click={click} /> : null}
         </MainContainer>
+    </Suspense>
     )
 }
 

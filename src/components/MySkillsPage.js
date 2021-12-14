@@ -1,28 +1,47 @@
-import React, {useState, useEffect} from "react";
+import { motion } from "framer-motion";
 import styled, { ThemeProvider } from "styled-components";
-import { lightTheme } from "./Themes";
+import {useState, lazy, Suspense} from "react";
+import { lightTheme, mediaQueries } from "./Themes";
+
 import {Design, Develope} from './AllSvgs';
-import RingLoader from "react-spinners/RingLoader";
-import { css } from "@emotion/react";
+
+import Loading from "../subComponents/Loading"
 
 
-import LogoComponent from '../subComponents/LogoComponent';
-import SocialIcons from '../subComponents/SocialIcons';
-import PowerButton from '../subComponents/PowerButton';
-import ParticleComponent from "../subComponents/ParticleComponent";
-import BigTitle from "../subComponents/BigTitle";
+const SocialIcons = lazy(() => import ('../subComponents/SocialIcons'));
+const PowerButton = lazy(() => import ('../subComponents/PowerButton'));
+const LogoComponent = lazy(() => import ('../subComponents/LogoComponent'));
+const ParticleComponent = lazy(() => import ("../subComponents/ParticleComponent"));
+const BigTitle = lazy(() => import ("../subComponents/BigTitle"));
 
-const Box = styled.div`
+const Box = styled(motion.div)`
 background-color: ${props => props.theme.body};
 width: 100vw;
 height: 100vh;
 position: relative;
 display: flex;
 justify-content: space-evenly;
-align-items: center;   
+align-items: center;
+
+${mediaQueries(50)`
+            flex-direction:column;  
+            padding:8rem 0;
+height:auto;
+            &>*:nth-child(5){
+              margin-bottom:5rem;
+            }
+           
+  `};
+  ${mediaQueries(30)`
+           
+            &>*:nth-child(5){
+              margin-bottom:4rem;
+            }
+           
+  `};
 `
 
-const Main = styled.div`
+const Main = styled(motion.div)`
 border: 2px solid ${props => props.theme.text};
 color: ${props => props.theme.text};
 background-color: ${props => props.theme.body};
@@ -32,6 +51,15 @@ height: 60vh;
 z-index:3;
 line-height: 1.5;
 cursor: pointer;
+${mediaQueries(60)`
+            height: 55vh;
+  `};
+
+  ${mediaQueries(50)`
+              width: 50vw;
+              height: max-content;
+
+  `};
 
 font-family: 'Ubuntu Mono',monospace;
 display: flex;
@@ -49,6 +77,26 @@ display: flex;
 justify-content: center;
 align-items: center;
 font-size: calc(1em + 1vw);
+
+${mediaQueries(60)`
+          font-size:calc(0.8em + 1vw);
+  `};
+
+  ${mediaQueries(50)`
+          font-size:calc(1em + 2vw);
+          margin-bottom:1rem;
+  `};
+
+  ${mediaQueries(30)`
+                      font-size:calc(1em + 1vw);
+  `};
+  ${mediaQueries(25)`
+                      font-size:calc(0.8em + 1vw);
+                      svg{
+                        width:30px;
+                        height:30px;
+                      }
+  `};
 
 ${Main}:hover &{
     &>*{
@@ -70,6 +118,25 @@ ${Main}:hover &{
     color:${props => props.theme.body};
 }
 
+${mediaQueries(50)`
+            font-size: calc(0.8em + 1vw);
+
+  `};
+
+  ${mediaQueries(30)`
+                      font-size:calc(0.7em + 1vw);
+
+              
+
+  `};
+
+  ${mediaQueries(25)`
+                      font-size:calc(0.5em + 1vw);
+
+              
+
+  `};
+
 strong{
     margin-bottom: 1rem;
     text-transform: uppercase;
@@ -81,92 +148,71 @@ ul, p{
 
 `
 
-const override = css`
-position: absolute;
-bottom: 10%;
-right: 10%;
-`
-
-
 const MySkillsPage = () => {
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        setLoading(true)
-        setTimeout(() => {
-            setLoading(false)
-        }, 2000)
-    }, [])
+    let [loading] = useState(true);
 
     return (
         <ThemeProvider theme={lightTheme}>
-
-            {
-                loading ?
-                <RingLoader 
-                color={'#000'} 
-                loading={loading}  
-                size={60}
-                css={override}
-                />
-
-                :
-
-                <Box>
-                    <LogoComponent theme='light'/>
-                    <SocialIcons theme='light'/>
-                    <PowerButton />
-                    <ParticleComponent theme='light'/>
-                    <Main>
-                        <Title>
-                            <Develope width={40} height={40} /> Développeur Backend
-                        </Title>
-                        <Description>
-                            Développeur Web, je me suis spécialisé dans le language PHP, ainsi que sur le framework Symfony.
-                        </Description>
-                        <Description>
-                            <strong>Skills</strong>
-                            <p>
-                                HTML, CSS, PHP, JS, SQL, Symfony, Laravel/Lumen, React, Bootstrap etc...
-                            </p>
-                        </Description>
-                        <Description>
-                            <strong>Outils</strong>
-                            <p>
-                                VSCode, GitHub, Adminer, Insomnia.
-                            </p>
-                        </Description>
-                    </Main>
-                    <Main>
+            <Suspense fallback={<Loading />}>
+            <Box
+            key="skills"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 1 } }}
+            exit={{ opacity: 0, transition: { duration: 0.5 } }}
+            >
+                <LogoComponent theme='light'/>
+                <SocialIcons theme='light'/>
+                <PowerButton />
+                <ParticleComponent theme='light'/>
+                <Main>
                     <Title>
-                        <Design width={40} height={40} /> Web-Design
+                        <Develope width={40} height={40} /> Développeur Backend
                     </Title>
                     <Description>
-                        J'ai toujours aimé la partie graphique, créer des designs from Scratch jusqu'à son intégration.
+                        Développeur Web, je me suis spécialisé dans le language PHP, ainsi que sur le framework Symfony.
                     </Description>
                     <Description>
-                        <strong>Workflow</strong>
-                        <ul>
-                            <li>
-                                Mockup site web sous Photoshop & XD.
-                            </li>
-                            <li>
-                                Intégration en HTML/CSS.
-                            </li>
-                        </ul>
+                        <strong>Skills</strong>
+                        <p>
+                            HTML, CSS, PHP, JS, SQL, Symfony, Laravel/Lumen, React, Bootstrap etc...
+                        </p>
                     </Description>
                     <Description>
                         <strong>Outils</strong>
                         <p>
-                            Adobe Suite (Photoshop, Illustrator, XD, Lightroom).
+                            VSCode, GitHub, Adminer, Insomnia.
                         </p>
                     </Description>
-                    </Main>
+                </Main>
+                <Main>
+                <Title>
+                    <Design width={40} height={40} /> Web-Design
+                </Title>
+                <Description>
+                    J'ai toujours aimé la partie graphique, créer des designs from Scratch jusqu'à son intégration.
+                </Description>
+                <Description>
+                    <strong>Workflow</strong>
+                    <ul>
+                        <li>
+                            Mockup site web sous Photoshop & XD.
+                        </li>
+                        <li>
+                            Intégration en HTML/CSS.
+                        </li>
+                    </ul>
+                </Description>
+                <Description>
+                    <strong>Outils</strong>
+                    <p>
+                        Adobe Suite (Photoshop, Illustrator, XD, Lightroom).
+                    </p>
+                </Description>
+                </Main>
 
-                    <BigTitle text="SKILLS" top="80%" right="30%" />
-                </Box>
-            }
-
+                <BigTitle text="SKILLS" top="80%" right="30%" />
+            </Box>
+            </Suspense>
         </ThemeProvider>
     )
 }
