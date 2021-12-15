@@ -13,7 +13,7 @@ const LogoComponent = lazy(() => import ("../subComponents/LogoComponent"));
 const PowerButton = lazy(() => import ("../subComponents/PowerButton"));
 const SocialIcons = lazy(() => import ("../subComponents/SocialIcons"));
 
-const MainContainer = styled.div`
+const MainContainer = styled(motion.div)`
 background: ${props => props.theme.body};
 width: 100vw;
 height: 100vh;
@@ -189,7 +189,6 @@ const Main = () => {
       };
       const mq = window.matchMedia("(max-width: 50em)").matches;
 
-    let [loading] = useState(true);
 
     return (
         <Suspense fallback={<Loading />}>
@@ -309,61 +308,62 @@ const Main = () => {
                     </BLOG>
                 )}
 
-                <WORK to="/work" click={click}>
+                <WORK click={+click} to="/work">
                     <motion.h2
+                    onClick={() => setpath("work")}
                     initial={{
-                        y:-200,
-                        transition: {type:'spring', duration: 1.5, delay:1}
+                        y: -200,
+                        transition: { type: "spring", duration: 1.5, delay: 1 },
                     }}
                     animate={{
-                        y:0,
-                        transition: {type:'spring', duration: 1.5, delay:1}
+                        y: 0,
+                        transition: { type: "spring", duration: 1.5, delay: 1 },
                     }}
-                    
-                    whileHover={{scale: 1.1}}
-                    whileTap={{scale: 0.9}}
-                    
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     >
-                        Mes Projets
+                    Mes Projets.
                     </motion.h2>
                 </WORK>
                 
                 <BottomBar>
-                    <ABOUT to="/about" click={click}>
-                    <motion.h2
-                    initial={{
-                        y:200,
-                        transition: {type:'spring', duration: 1.5, delay:1}
-                    }}
-                    animate={{
-                        y:0,
-                        transition: {type:'spring', duration: 1.5, delay:1}
-                    }}
-                    
-                    whileHover={{scale: 1.1}}
-                    whileTap={{scale: 0.9}}
-                    
+                    <ABOUT
+                    onClick={() => setClick(false)}
+                    click={mq ? +false : +click}
+                    to="/about"
                     >
-                        À propos de moi.
-                    </motion.h2>
+                        <motion.h2
+                            onClick={() => setpath("about")}
+                            initial={{
+                            y: 200,
+                            transition: { type: "spring", duration: 1.5, delay: 1 },
+                            }}
+                            animate={{
+                            y: 0,
+                            transition: { type: "spring", duration: 1.5, delay: 1 },
+                            }}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            >
+                            À propos de moi.
+                        </motion.h2>
                     </ABOUT>
                     <SKILLS to="/skills">
-                    <motion.h2
-                    initial={{
-                        y:200,
-                        transition: {type:'spring', duration: 1.5, delay:1}
-                    }}
-                    animate={{
-                        y:0,
-                        transition: {type:'spring', duration: 1.5, delay:1}
-                    }}
-                    
-                    whileHover={{scale: 1.1}}
-                    whileTap={{scale: 0.9}}
-                    
-                    >
-                        Mes skills.
-                    </motion.h2>
+                        <motion.h2
+                            onClick={() => setpath("skills")}
+                            initial={{
+                            y: 200,
+                            transition: { type: "spring", duration: 1.5, delay: 1 },
+                            }}
+                            animate={{
+                            y: 0,
+                            transition: { type: "spring", duration: 1.5, delay: 1 },
+                            }}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            Mes Skills.
+                        </motion.h2>
                     </SKILLS>
                 </BottomBar>
 

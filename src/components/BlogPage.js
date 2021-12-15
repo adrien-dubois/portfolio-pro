@@ -1,65 +1,45 @@
-import React, {useState, useEffect} from "react";
+import { motion } from "framer-motion";
+import {lazy, Suspense} from "react";
+
 import styled, { ThemeProvider } from "styled-components";
+import Loading from "../subComponents/Loading";
+
 import { DarkTheme } from "./Themes";
-import RingLoader from "react-spinners/RingLoader";
-
-
-import LogoComponent from '../subComponents/LogoComponent';
-import SocialIcons from '../subComponents/SocialIcons';
-import PowerButton from '../subComponents/PowerButton';
-
+import { MainLayout } from "../subComponents/Layout";
 import Skills from "./Skills";
 import Resume from "./Resume";
-import { MainLayout } from "../subComponents/Layout";
-import ParticleComponent from "../subComponents/ParticleComponent";
-import { css } from "@emotion/react";
 
-const Box = styled.div`
+
+const ParticleComponent = lazy(() => import ("../subComponents/ParticleComponent"));
+const LogoComponent = lazy(() => import ('../subComponents/LogoComponent'));
+const SocialIcons = lazy(() => import ('../subComponents/SocialIcons'));
+const PowerButton = lazy(() => import ('../subComponents/PowerButton'));
+
+const Box = styled(motion.div)`
 background-color: ${props => props.theme.body};
 width: 100vw;
 height: 100%;
 position: relative;
-display: flex;
-   
+display: flex;  
 `
 
-const Container = styled.div`
+const Container = styled(motion.div)`
 margin-top: 4rem;
 margin-left: 5rem;
 color:${props => props.theme.text};
 width: 100%;
 `
 
-const override = css`
-position: absolute;
-bottom: 10%;
-right: 10%;
-
-`
-
 const BlogPage = () => {
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        setLoading(true)
-        setTimeout(() => {
-            setLoading(false)
-        }, 2000)
-    }, [])
 
     return (
         <ThemeProvider theme={DarkTheme}>
-            {
-                loading ?
-                    <RingLoader 
-                    color={'#000'} 
-                    loading={loading}  
-                    size={60}
-                    css={override}
-                    />
-                :
-
-                <Box>
+            <Suspense fallback={<Loading/>}>
+                <Box
+                key='skills'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 0.5 } }}
+                exit={{ opacity: 0, transition: { duration: 0.5 } }}>
                     <LogoComponent theme='dark'/>
                     <SocialIcons theme='dark'/>
                     <PowerButton />
@@ -72,7 +52,7 @@ const BlogPage = () => {
                     </Container>
 
                 </Box>
-            }
+            </Suspense>
         </ThemeProvider>
     )
 }
