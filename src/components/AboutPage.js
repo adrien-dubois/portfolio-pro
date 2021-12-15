@@ -111,11 +111,11 @@ const AboutPage = () => {
                     <Main
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1, transition: { duration: 1, delay: 1 } }}>
-                    Développeur Web Backend, je bénéficie d'une expérience pratique dans la réalisation de sites web, en particulier e-commerces et PHP Symfony, gestion et création de base de données, acquise au cours de mon expérience.
+                    Développeur Web Backend, je bénéficie d'une expérience pratique acquise au cours de mon expérience, dans la réalisation de sites web, e-commerces, PHP Symfony, gestion et création de base de données.
+                    <br /> 
+                    Curieux de nature, aimant apprendre et acquérir de nouvelles connaissances, c'est naturellement que je me dirige aussi vers le Frontend afin de bénéficier d'une polyvalence dans mes compétences. 
                     <br /> <br />
-                    Étant curieux de nature, aimant apprendre et acquérir de nouvelles connaissances, c'est donc naturellement que je me dirige aussi vers le Frontend afin de bénéficier d'une polyvalence dans mes compétences. 
-                    <br /> <br />
-                    Doté d'une grande capacité d'adaptation, je sais me montrer proactif, force de proposition et digne de confiance dans la réalisation de mes missions. <br />Je suis également passionné par les langues ainsi que la lecture.
+                    Doté d'une grande capacité d'adaptation, je sais me montrer proactif, force de proposition et digne de confiance dans la réalisation de mes missions. 
                     </Main>
 
                     <BigTitle text="ADRIEN" top="10%" left="5%" />

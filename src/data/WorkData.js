@@ -2,7 +2,7 @@ export const Work = [
     {
         id:1,
         name:"Connected School Services",
-        description:"CSS est une plateforme de services qui regroupe toutes les interactions et communications qui peuvent se faire entre un étudiant, l'établissement scolaire et ses profs. Front réalisé en React, Back et API en Symfony.",
+        description:"Plateforme de services qui regroupe toutes les interactions qui peuvent se faire entre un étudiant, l'établissement scolaire et ses profs. Front réalisé en React, Back et API en Symfony.",
         tags:["React","Symfony","Api"],
         
         demo:"http://connectedschoolservices.surge.sh/",
@@ -21,7 +21,7 @@ export const Work = [
     {
         id:3,
         name:"O'flix",
-        description:"Site web inspiré de Netflix & Allociné, qui fournit des informations cinématographiques sur des séries TV. Le projet réuni les infos autour de séries TV, gestion de comptes clients, favoris, likes, backoffice ainsi qu'une API. Projet full Symfony & BootStrap",
+        description:"Inspiré de Netflix & Allociné, le projet réuni les infos cinématographiques autour de séries TV, gestion de comptes clients, favoris, likes, backoffice, API. Projet full Symfony & BootStrap",
         tags:["Symfony", "Bootstrap", "API"],
         
         demo:"http://oflix.white-umbrella.fr/",
@@ -40,7 +40,7 @@ export const Work = [
     {
         id:5,
         name:"Webdesign HP RP",
-        description:"Simplement un webdesign brut fait sous Photoshop pour un Role Play sur Harry Potter. Webdesign en onepage, qui permets de retoucher simplement ce dont on a besoin avin d'en faire l'intégration",
+        description:"Uun webdesign brut fait sous Photoshop pour un Role Play sur Harry Potter. Onepage, qui permets de retoucher simplement ce dont on a besoin avin d'en faire l'intégration",
         tags:["Webdesign", "Mockup", "Photoshop"],
         
         demo:"https://adrien-dubois.github.io/webdesign-hp/",

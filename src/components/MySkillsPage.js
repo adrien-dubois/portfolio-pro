@@ -169,18 +169,18 @@ const MySkillsPage = () => {
                         <Develope width={40} height={40} /> Développeur Backend
                     </Title>
                     <Description>
-                        Développeur Web, je me suis spécialisé dans le language PHP, ainsi que sur le framework Symfony.
+                        Développeur Web, je me suis spécialisé en PHP, ainsi que sur le framework Symfony.
                     </Description>
                     <Description>
                         <strong>Skills</strong>
                         <p>
-                            HTML, CSS, PHP, JS, SQL, Symfony, Laravel/Lumen, React, Bootstrap etc...
+                            HTML, CSS, PHP, JS, SQL, Symfony, Laravel, React, Bootstrap etc...
                         </p>
                     </Description>
                     <Description>
                         <strong>Outils</strong>
                         <p>
-                            VSCode, GitHub, Adminer, Insomnia.
+                            VSCode, GitHub, Adminer.
                         </p>
                     </Description>
                 </Main>
@@ -195,7 +195,7 @@ const MySkillsPage = () => {
                     <strong>Workflow</strong>
                     <ul>
                         <li>
-                            Mockup site web sous Photoshop & XD.
+                            Mockup sous Photoshop & XD.
                         </li>
                         <li>
                             Intégration en HTML/CSS.
